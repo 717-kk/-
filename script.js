@@ -1102,6 +1102,11 @@ function initPetInteraction() {
         isDragging = false;
         clickStartTime = new Date().getTime();
         
+        // 如果是触摸事件，阻止默认行为以防止触发后续的鼠标事件
+        if (e.type === 'touchstart') {
+            e.preventDefault();
+        }
+
         const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
         const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
 
