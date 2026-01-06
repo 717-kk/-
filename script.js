@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initDayMode(); // 初始化日间模式
     initCustomSelect();
     initPetFeature(); // 初始化桌宠功能
+    initInputPersistence(); // 初始化输入框持久化
 
     // 世界书按钮点击事件
     const worldbookBtn = document.getElementById('icon-worldbook');
@@ -1183,4 +1184,20 @@ function initPetInteraction() {
             }, 3000);
         }
     }
+}
+
+function initInputPersistence() {
+    const starInput = document.querySelector('.star-input');
+    if (!starInput) return;
+
+    // 加载保存的内容
+    const savedContent = localStorage.getItem('starInputContent');
+    if (savedContent) {
+        starInput.value = savedContent;
+    }
+
+    // 监听输入并保存
+    starInput.addEventListener('input', (e) => {
+        localStorage.setItem('starInputContent', e.target.value);
+    });
 }
